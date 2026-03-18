@@ -1,0 +1,88 @@
+================================================================================
+PROJECT DETAILS: RESUMATE - AI-POWERED RESUME BUILDER
+================================================================================
+
+1. PROJECT OVERVIEW
+--------------------------------------------------------------------------------
+ResuMate is a modern, full-stack web application designed to simplify the resume-building
+process for job seekers. It uses Google Gemini AI to help users generate professional
+summaries and work experience descriptions, while providing a real-time, high-quality
+visual preview.
+
+2. TECHNOLOGY STACK
+--------------------------------------------------------------------------------
+Frontend:
+- Framework: React.js (Vite)
+- State Management: Redux Toolkit
+- Styling: Tailwind CSS
+- Animations: Framer Motion
+- UI Components: Radix UI, Lucide React icons
+- AI Integration: @google/generative-ai (Gemini SDK)
+
+Backend:
+- Runtime: Node.js
+- Framework: Express.js
+- Database: MongoDB (Mongoose ODM)
+- Authentication: JWT (JSON Web Token) with bcrypt for hashing
+- API Utilities: Standardized ApiResponse and ApiError handling
+
+3. KEY FEATURES
+--------------------------------------------------------------------------------
+- AI Content Generation: Leverages Google Gemini for summaries and descriptions.
+- Dynamic Editor: A multi-step form (Personal, Summary, Experience, Projects, Education, Skills).
+- Live Preview: Real-time visual feedback of the resume as data is entered.
+- Theme Customization: Users can select custom theme colors for their resumes.
+- Dashboard: Manage multiple resumes (Create, Edit, View, Delete).
+- Modern UI/UX: Animated transitions, sticky blurred headers, and responsive design.
+
+4. USER WORKFLOW (START TO END)
+--------------------------------------------------------------------------------
+Step 1: Landing Page
+- User visits the homepage, which features a modern, animated hero section and feature overview.
+- User clicks "Get Started" to enter the application.
+
+Step 2: Authentication
+- If not logged in, user is redirected to the Auth Page (Sign In/Sign Up).
+- Secure login using JWT; session data is managed via Redux.
+
+Step 3: Dashboard
+- Upon login, user enters the Dashboard.
+- User can see existing resumes or click "Create New Resume".
+- Creating a new resume requires a title and takes the user to the Editor.
+
+Step 4: Editing & AI Assistance
+- User fills out sections step-by-step.
+- In "Summary" or "Experience", the user can click "Generate with AI".
+- The system sends a prompt to Gemini AI, which returns professionally written suggestions.
+- User selects a suggestion, which automatically populates the form.
+
+Step 5: Preview & Customize
+- As the user types, the Preview Page (right side on desktop) updates instantly.
+- User can change the resume theme color at any time.
+
+Step 6: Finalization & Download
+- Once satisfied, the user can view the final resume in a full-screen mode.
+- User can download or print the resume as a high-quality PDF.
+
+5. DATABASE SCHEMA (MONGODB)
+--------------------------------------------------------------------------------
+The project uses a structured relational pattern in MongoDB:
+- User Entity: Stores credentials and profile info.
+- Resume Entity: Central document containing:
+  - Personal Details (String fields)
+  - Experience (Embedded Array)
+  - Projects (Embedded Array)
+  - Education (Embedded Array)
+  - Skills (Embedded Array)
+  - Metadata (User reference, title, themeColor)
+
+6. PROJECT ARCHITECTURE
+--------------------------------------------------------------------------------
+The project follows a modular structure:
+- Backend: Implements MVC (Models, Views/Controllers, Routes).
+- Frontend: Organized by features (user, resume) and pages (home, dashboard, auth).
+- Middleware: Custom auth middleware for protecting private routes.
+
+================================================================================
+Developed by Sahil Kamti & Team
+================================================================================
