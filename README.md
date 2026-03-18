@@ -104,7 +104,7 @@ npm run dev
 
 ---
 
-## �️ How it Works
+## 🛠️ How it Works
 
 1. **Sign Up**: Create a secure account to save your resumes.
 2. **Dashboard**: Start a new resume or edit an existing one.
@@ -130,7 +130,5 @@ Contributions make the open-source community an amazing place to learn, inspire,
 ## 👨‍💻 Developers
 
 - **Sahil Kamti** - [GitHub](https://github.com/Sahil2693) | [LinkedIn](https://www.linkedin.com/in/sahil-kamti-7a0b3a24a/)
-- **Sahid Raja Ansari** - [LinkedIn](https://www.linkedin.com/in/sahidrajaansari/)
-- **Shaharyar Alam** - [LinkedIn](https://www.linkedin.com/in/shaharyar-alam-305322208/)
 
 ---
