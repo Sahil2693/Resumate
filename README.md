@@ -23,6 +23,7 @@
 - 🔍 **Live Preview**: See your resume take shape in real-time as you edit your details.
 - 🛠️ **Full Customization**: Change theme colors, edit multiple sections (Experience, Education, Skills, Projects), and manage multiple resumes from a central dashboard.
 - 🔒 **Secure Auth**: Custom JWT-based authentication system with encrypted passwords.
+- 📄 **ATS-Friendly**: Optimized semantic HTML and print styles for seamless parsing by Applicant Tracking Systems.
 - 📄 **Quick Export**: Download your finalized resume as a professional PDF.
 
 ---

@@ -33,6 +33,7 @@ Backend:
 - Live Preview: Real-time visual feedback of the resume as data is entered.
 - Theme Customization: Users can select custom theme colors for their resumes.
 - Dashboard: Manage multiple resumes (Create, Edit, View, Delete).
+- ATS Optimization: Semantic HTML structure and optimized print styles for better parser compatibility.
 - Modern UI/UX: Animated transitions, sticky blurred headers, and responsive design.
 
 4. USER WORKFLOW (START TO END)
