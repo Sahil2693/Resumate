@@ -57,7 +57,32 @@ ResuMate follows a clean **MVC (Model-View-Controller)** pattern on the backend 
 
 ---
 
-## 🚀 Installation & Setup
+## � Database & Collections
+
+The project uses the `ai_resume_builder` database in MongoDB with two primary collections:
+
+### 1. `users` Collection
+
+- **fullName** (String): The user's full name.
+- **email** (String, unique): User's primary email for login.
+- **password** (String): Hashed password for security.
+- **timestamps**: `createdAt` and `updatedAt`.
+
+### 2. `resumes` Collection
+
+- **title** (String): The name of the resume project.
+- **user** (ObjectId, ref: 'User'): Reference to the owner of the resume.
+- **themeColor** (String): Hex code or CSS class for the selected theme.
+- **Personal Details**: `firstName`, `lastName`, `email`, `jobTitle`, `phone`, `address`, `summary` (Strings).
+- **experience** (Embedded Array): `title`, `companyName`, `city`, `state`, `startDate`, `endDate`, `currentlyWorking`, `workSummary`.
+- **projects** (Embedded Array): `projectName`, `techStack`, `projectSummary`.
+- **education** (Embedded Array): `universityName`, `degree`, `major`, `startDate`, `endDate`, `description`, `grade`, `gradeType`.
+- **skills** (Embedded Array): `name` (String), `rating` (Number).
+- **timestamps**: `createdAt` and `updatedAt`.
+
+---
+
+## �🚀 Installation & Setup
 
 ### 1️⃣ Clone the Repository
 
@@ -71,7 +96,7 @@ cd ResuMate
 #### Backend (`Backend/.env`)
 
 ```plaintext
-MONGODB_URI=your_mongodb_uri
+MONGODB_URI=your_mongodb_srv_connection_string
 PORT=5001
 JWT_SECRET_KEY=your_secret_key
 JWT_SECRET_EXPIRES_IN=1d
@@ -85,7 +110,18 @@ VITE_GEMENI_API_KEY=your_gemini_api_key
 VITE_APP_URL=http://localhost:5001/
 ```
 
-### 3️⃣ Running the Application
+### 3️⃣ MongoDB Configuration
+
+To connect and configure the database for a new development environment:
+
+1. **Create a MongoDB Atlas Cluster**: Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and create a free account.
+2. **Build a Cluster**: Set up a new cluster and add your current IP address in "Network Access".
+3. **Database Access**: Create a new user with "Read and write to any database" privileges.
+4. **Obtain Connection String**: Click "Connect" -> "Connect your application" and copy the SRV connection string.
+5. **Update `.env`**: Replace `your_mongodb_srv_connection_string` in `Backend/.env` with your actual connection string.
+6. **Verify Connection**: Run the backend; you should see: `✅ MongoDB Connected: <cluster_host>`.
+
+### 4️⃣ Running the Application
 
 #### **Backend**
 

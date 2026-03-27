@@ -65,17 +65,32 @@ Step 6: Finalization & Download
 - Once satisfied, the user can view the final resume in a full-screen mode.
 - User can download or print the resume as a high-quality PDF.
 
-5. DATABASE SCHEMA (MONGODB)
+5. DATABASE SCHEMA & COLLECTIONS
 --------------------------------------------------------------------------------
-The project uses a structured relational pattern in MongoDB:
-- User Entity: Stores credentials and profile info.
-- Resume Entity: Central document containing:
-  - Personal Details (String fields)
-  - Experience (Embedded Array)
-  - Projects (Embedded Array)
-  - Education (Embedded Array)
-  - Skills (Embedded Array)
-  - Metadata (User reference, title, themeColor)
+The project uses the `ai_resume_builder` database in MongoDB with two primary
+collections (equivalent to tables in SQL).
+
+1. 'users' Collection:
+   - fullName (String): The user's full name.
+   - email (String, unique): User's primary email for login.
+   - password (String): Hashed password for security.
+   - timestamps: createdAt and updatedAt.
+
+2. 'resumes' Collection:
+   - title (String): The name of the resume project.
+   - user (ObjectId, ref: 'User'): Reference to the owner of the resume.
+   - themeColor (String): Hex code or CSS class for the selected theme.
+   - Personal Details:
+     - firstName, lastName, email, jobTitle, phone, address, summary (Strings).
+   - experience (Embedded Array of Objects):
+     - title, companyName, city, state, startDate, endDate, currentlyWorking, workSummary.
+   - projects (Embedded Array of Objects):
+     - projectName, techStack, projectSummary.
+   - education (Embedded Array of Objects):
+     - universityName, degree, major, startDate, endDate, description, grade, gradeType.
+   - skills (Embedded Array of Objects):
+     - name (String), rating (Number).
+   - timestamps: createdAt and updatedAt.
 
 6. PROJECT ARCHITECTURE
 --------------------------------------------------------------------------------
@@ -84,6 +99,42 @@ The project follows a modular structure:
 - Frontend: Organized by features (user, resume) and pages (home, dashboard, auth).
 - Middleware: Custom auth middleware for protecting private routes.
 
+7. MONGODB CONFIGURATION & DATABASE CONNECTION
+--------------------------------------------------------------------------------
+To connect and configure the database for a new development environment, follow
+these steps:
+
+Step 1: Create a MongoDB Atlas Cluster
+- Go to https://www.mongodb.com/cloud/atlas and create a free account.
+- Build a new cluster (Shared Tier is sufficient).
+- In "Network Access", add your current IP address (or 0.0.0.0/0 for testing).
+- In "Database Access", create a new user with "Read and write to any database"
+  privileges. Note down the username and password.
+
+Step 2: Obtain Connection String
+- Click "Connect" on your cluster, select "Connect your application".
+- Copy the SRV connection string (e.g., mongodb+srv://<db_username>:<db_password>@cluster0.example.mongodb.net/?retryWrites=true&w=majority).
+
+Step 3: Configure Environment Variables
+- In the `Backend` directory, create or edit the `.env` file.
+- Add your connection string to the `MONGODB_URI` variable:
+  MONGODB_URI="your_mongodb_srv_connection_string"
+- Ensure you replace `<db_username>` and `<db_password>` with your actual
+  database user credentials.
+
+Step 4: Database Name
+- The project is configured to use a database named `ai_resume_builder`.
+- This is defined in `Backend/src/db/index.js` using the `dbName` option in
+  `mongoose.connect()`.
+
+Step 5: Verify Connection
+- Run the backend using `npm run dev` or `node src/index.js`.
+- If successful, you will see: "✅ MongoDB Connected: <cluster_host>"
+- If it fails, common causes are:
+  - Incorrect IP whitelisting in MongoDB Atlas.
+  - Special characters in the password not being URL-encoded.
+  - Network/DNS restrictions (try a different network or hotspot).
+
 ================================================================================
-Developed by Sahil Kamti & Team
+Developed by Sahil Kamti 
 ================================================================================
